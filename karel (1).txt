@@ -1,0 +1,44 @@
+iniciar-programa
+	define-nueva-instruccion gira-derecha como inicio
+    	repetir 3 veces inicio
+        	gira-izquierda;
+        fin;
+    fin;
+    inicia-ejecucion
+    mientras no-orientado-al-sur hacer inicio
+    	gira-izquierda;
+    fin;
+    mientras frente-libre hacer inicio
+    avanza;
+    fin;
+    gira-derecha;
+    mientras frente-libre hacer inicio
+    	avanza;
+    fin;
+    gira-derecha;
+    mientras frente-libre hacer inicio
+    	mientras junto-a-zumbador hacer inicio
+        	coge-zumbador;
+        fin;
+        avanza;
+        mientras junto-a-zumbador hacer inicio
+        	coge-zumbador;
+        fin;
+    si frente-bloqueado y derecha-libre entonces inicio
+    	repetir 2 veces inicio
+        	gira-izquierda;
+        fin;
+        mientras frente-libre hacer inicio
+        	avanza
+        fin;
+        gira-izquierda;
+        avanza;
+        gira-izquierda;
+    fin;
+    fin;
+    mientras algun-zumbador-en-la-mochila hacer inicio
+    	deja-zumbador;
+    fin;
+        apagate;
+    termina-ejecucion
+finalizar-programa
