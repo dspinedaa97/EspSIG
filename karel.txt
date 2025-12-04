@@ -19,3 +19,10 @@ iniciar-programa
         apagate;
     termina-ejecucion
 finalizar-programa
+
+prueba
+prueba
+pruebaprueba
+prueba
+prueba
+pruebaprueba
