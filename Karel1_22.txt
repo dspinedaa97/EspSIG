@@ -1,0 +1,123 @@
+iniciar-programa
+	define-nueva-instruccion gira-derecha como inicio
+    	repetir 3 veces inicio
+        	gira-izquierda;
+        fin;
+    fin;
+    define-nueva-instruccion media-vuelta como inicio
+    	repetir 2 veces inicio
+        	gira-izquierda;
+        fin;
+    fin;
+    define-nueva-instruccion bordear-corral como inicio
+    { Si el hueco está a la derecha }
+    si derecha-libre entonces inicio
+        gira-derecha;
+        avanza;
+        gira-izquierda;
+        avanza;
+        avanza;
+        gira-izquierda;
+        avanza;
+        gira-derecha;
+    fin;
+
+    { Si el hueco está a la izquierda }
+    si izquierda-libre entonces inicio
+        gira-izquierda;
+        avanza;
+        gira-derecha;
+        avanza;
+        avanza;
+        gira-derecha;
+        avanza;
+        gira-izquierda;
+    fin;
+fin;
+    inicia-ejecucion
+    { Karel se orienta al norte}
+    mientras no-orientado-al-norte hacer inicio
+    	gira-izquierda;
+    fin;
+    { Karel busca la esquina superior izquierda }
+    mientras frente-libre hacer inicio
+    avanza;
+          si derecha-libre entonces inicio  
+          si frente-bloqueado entonces inicio
+              si izquierda-libre entonces inicio
+                  gira-izquierda;
+              fin;
+              avanza;
+              si derecha-libre entonces inicio
+                  gira-derecha;
+              fin;
+              avanza;
+          fin;
+          fin;
+    fin;
+    gira-izquierda;
+    avanza;    
+    si junto-a-zumbador entonces inicio
+    	coge-zumbador;
+    fin;
+    mientras frente-libre hacer inicio
+    	avanza;
+        si junto-a-zumbador entonces inicio
+        	coge-zumbador;
+        fin;
+        si frente-bloqueado entonces inicio
+        	gira-izquierda;
+            avanza;
+            gira-derecha;
+            avanza;
+            gira-derecha;
+            avanza;
+        fin;
+        
+        
+        si frente-bloqueado y izquierda-bloqueada y derecha-bloqueada entonces inicio
+        	media-vuelta;
+            avanza;
+            si derecha-libre entonces inicio
+            	gira-derecha;
+                avanza;
+                gira-derecha;
+                avanza;
+                avanza;
+                gira-derecha;
+                avanza;
+                gira-izquierda;
+            fin;
+        fin;
+        fin;
+   media-vuelta;
+
+    { Subir hasta el muro norte (inicio de la columna) }
+    mientras frente-libre hacer inicio
+        avanza;
+    fin;
+
+    { Ahora estoy pegado al muro norte; intentar moverme lateralmente a la siguiente columna
+      comprobando primero si la celda lateral está libre. Si no hay lateral libre, finalizo. }
+
+    { Intentar moverse hacia la derecha (columna siguiente a la derecha) }
+    si derecha-libre entonces inicio
+        gira-derecha;
+        avanza;         { moverme a la fila superior de la siguiente columna }
+        gira-derecha;
+    fin;
+
+    { Si la derecha NO está libre, intentar por la izquierda }
+    si (no derecha-libre) entonces inicio
+        si izquierda-libre entonces inicio
+            gira-izquierda;
+            avanza;
+            gira-izquierda;
+        fin    
+        sino inicio
+            { no hay más columnas accesibles: terminar }
+            apagate;
+        fin;
+    fin;    
+    termina-ejecucion
+finalizar-programa
