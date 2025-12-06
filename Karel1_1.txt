@@ -38,13 +38,16 @@ iniciar-programa
         	gira-izquierda;
         fin;
         { inicia a buscar la pared haciendo comprobaciones }
-        mientras frente-libre hacer inicio
+        mientras frente-libre y izquierda-libre hacer inicio
         	comprueba;
         fin;
         gira-izquierda;
         {sigue el muro buscando la salida }
         mientras derecha-bloqueada hacer inicio
-        	si frente-bloqueado entonces inicio
+        	si frente-bloqueado y no-orientado-al-este entonces inicio
+            	gira-izquierda;
+            fin;
+            si frente-bloqueado y orientado-al-este entonces inicio
             	gira-izquierda;
             fin;
         	avanza;
